@@ -60,4 +60,42 @@ public class ResizableArray<E> {
             sourceArray[i] = sourceArray[i + 1];
         }
     }
+
+    public void delete(int index) {
+        shiftElements(index);
+        sourceArray[size - 1] = null;
+        numberOfElements--;
+    }
+
+    public Object[] getSourceArray() {
+        return sourceArray;
+    }
+
+    public void setSourceArray(Object[] sourceArray) {
+        this.sourceArray = sourceArray;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
+    }
+
+    public int getNumberOfElements() {
+        return numberOfElements;
+    }
+
+    public void setNumberOfElements(int numberOfElements) {
+        this.numberOfElements = numberOfElements;
+    }
 }
