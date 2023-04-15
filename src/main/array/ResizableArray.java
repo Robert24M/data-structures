@@ -11,7 +11,6 @@ public class ResizableArray<E> {
     public ResizableArray(int initialCapacity) {
         this.size = initialCapacity;
         this.sourceArray = new Object[initialCapacity];
-
     }
 
     public ResizableArray() {
@@ -27,6 +26,9 @@ public class ResizableArray<E> {
 
     public void add(E element, int index) {
         try {
+            if (sourceArray[index] != null) {
+                shiftElementsToRight(index);
+            }
             sourceArray[index] = element;
             numberOfElements++;
 
@@ -55,47 +57,36 @@ public class ResizableArray<E> {
         size = sourceArray.length;
     }
 
-    private void shiftElements(int startingPoint) {
+    private void shiftElementsToLeft(int startingPoint) {
         for (int i = startingPoint; i < size - 1; i++) {
             sourceArray[i] = sourceArray[i + 1];
         }
     }
 
+    private void shiftElementsToRight(int startingPoint) {
+        if (currentIndex == size) {
+            grow();
+        }
+        for (int i = numberOfElements; i > startingPoint; i--) {
+            sourceArray[i] = sourceArray[i - 1];
+        }
+    }
+
     public void delete(int index) {
-        shiftElements(index);
+        shiftElementsToLeft(index);
         sourceArray[size - 1] = null;
         numberOfElements--;
     }
 
-    public Object[] getSourceArray() {
-        return sourceArray;
-    }
+    public void set(int index, E object) {
+        if (index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
 
-    public void setSourceArray(Object[] sourceArray) {
-        this.sourceArray = sourceArray;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-
-    public void setCurrentIndex(int currentIndex) {
-        this.currentIndex = currentIndex;
+        sourceArray[index] = object;
     }
 
     public int getNumberOfElements() {
         return numberOfElements;
-    }
-
-    public void setNumberOfElements(int numberOfElements) {
-        this.numberOfElements = numberOfElements;
     }
 }
