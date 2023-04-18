@@ -86,6 +86,19 @@ public class ResizableArray<E> {
         sourceArray[index] = object;
     }
 
+    public int indexOf(E object) {
+        for (int i = 0; i < numberOfElements; i++) {
+            if (sourceArray[i] == object) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isEmpty() {
+        return numberOfElements == 0;
+    }
+
     public int getNumberOfElements() {
         return numberOfElements;
     }

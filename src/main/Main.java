@@ -2,6 +2,8 @@ package main;
 
 import main.array.ResizableArray;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -17,5 +19,7 @@ public class Main {
         for (int i = 0; i < arr.getNumberOfElements(); i++) {
             System.out.println(arr.get(i));
         }
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
     }
 }
